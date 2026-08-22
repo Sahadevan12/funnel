@@ -67,6 +67,16 @@ window.TF = (function(){
     });
   }
 
+  /* ---------------- Compact sticky header on scroll ---------------- */
+  (function(){
+    if(!nav) return;
+    function onScroll(){
+      nav.classList.toggle('nav-scrolled', window.scrollY > 40);
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+
   /* ---------------- FAQ accordion (delegated: works for dynamically-rendered FAQ lists too) ---------------- */
   document.addEventListener('click', function(e){
     var btn = e.target.closest('.faq-q');
