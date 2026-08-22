@@ -326,6 +326,11 @@
           (product.minInvestment ? '<span class="product-block-min">Minimum ' + product.minInvestment + '</span>' : '') +
           '</div>' +
         '</div>' +
+        '<div class="product-strip">' +
+          '<p class="product-strip-positioning">' + product.positioning + '</p>' +
+          '<div class="product-strip-pillars">' + product.pillars.map(function(p){ return '<span>' + p + '</span>'; }).join('<span class="dot">·</span>') + '</div>' +
+          '<button type="button" class="product-strip-cta" data-enquiry-toggle>' + product.ctaLabel + ' →</button>' +
+        '</div>' +
         '<div class="product-body-grid">' +
           '<div>' +
             '<div class="product-subhead">Why Choose This Solution</div>' +
@@ -361,9 +366,9 @@
     }
     renderMiniEnquiry(section.querySelector('.mini-enquiry'), product);
 
-    var cta = section.querySelector('[data-enquiry-toggle]');
     var enquiry = section.querySelector('.mini-enquiry');
-    cta.addEventListener('click', function(){
+    section.addEventListener('click', function(e){
+      if(!e.target.closest('[data-enquiry-toggle]')) return;
       enquiry.hidden = false;
       requestAnimationFrame(function(){
         enquiry.scrollIntoView({behavior:'smooth', block:'center'});

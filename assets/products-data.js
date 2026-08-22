@@ -8,6 +8,8 @@ window.TF_PRODUCTS = [
     shortName: 'PMS',
     icon: '📊',
     tagline: 'A professionally managed portfolio built around your goals, risk profile and wealth objectives.',
+    positioning: 'For investors seeking professional portfolio management',
+    pillars: ['Personalised', 'Active', 'High-touch'],
     description: 'Access India’s top PMS providers through a single window. We evaluate, compare, and recommend strategies aligned with your risk profile.',
     minInvestment: '₹50L',
     whyChoose: [
@@ -50,6 +52,8 @@ window.TF_PRODUCTS = [
     shortName: 'Mutual Funds',
     icon: '💰',
     tagline: 'Goal-based mutual fund portfolios across equity, debt, hybrid and international categories.',
+    positioning: 'For diversified long-term wealth creation',
+    pillars: ['Diversified', 'Flexible', 'Goal-based'],
     description: 'SIP planning, lump-sum deployment, and tax-efficient withdrawal strategies — all under one roof.',
     minInvestment: null,
     whyChoose: [
@@ -91,6 +95,8 @@ window.TF_PRODUCTS = [
     shortName: 'AIF',
     icon: '🏦',
     tagline: 'Access to Alternative Investment Funds and structured opportunities for ultra-HNI capital.',
+    positioning: 'For sophisticated investors seeking alternative strategies',
+    pillars: ['Alternative', 'Selective', 'Long-term'],
     description: 'For ultra-HNI clients, we facilitate access to Alternative Investment Funds (Cat I, II, III), pre-IPO opportunities, and structured debt instruments.',
     minInvestment: '₹1Cr',
     whyChoose: [
@@ -132,6 +138,8 @@ window.TF_PRODUCTS = [
     shortName: 'Portfolio Overhaul',
     icon: '🔧',
     tagline: 'A professional review for investors who already have investments but no clear architecture.',
+    positioning: "Already investing? Let's improve what you already own.",
+    pillars: ['Review', 'Diversification', 'Alignment'],
     description: 'We clean up, restructure, and rebuild — consolidating fragmented holdings into a high-conviction allocation.',
     minInvestment: null,
     whyChoose: [
@@ -155,7 +163,7 @@ window.TF_PRODUCTS = [
       { title: 'Rebuild', desc: 'Consolidate into one high-conviction allocation.' }
     ],
     eligibility: 'No minimum investment size — available to any investor with an existing portfolio to review.',
-    ctaLabel: 'Review My Portfolio',
+    ctaLabel: 'Get Portfolio Review',
     calculatorType: 'health-check',
     tags: ['Clean-Up', 'Restructure', 'Consolidate', 'Rebuild'],
     comparison: {
@@ -204,7 +212,7 @@ window.TF_STATS = [
   { value: '16+', label: 'Years of Experience', numeric: 16, suffix: '+', placeholder: false },
   { value: '100+', label: 'Ultra HNIs Served', numeric: 100, suffix: '+', placeholder: false },
   { value: '4', label: 'Investment Solutions', numeric: 4, suffix: '', placeholder: false },
-  { value: 'SEBI · AMFI · APMI', label: 'Registered & Certified', numeric: null, placeholder: false, isText: true }
+  { value: 'AMFI · APMI', label: 'ARN-360113 · APRN09086', numeric: null, placeholder: false, isText: true }
 ];
 
 window.TF_PROCESS = [

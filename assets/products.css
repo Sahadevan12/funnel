@@ -8,6 +8,7 @@
 :root{
   --gold:#c9a86a;
   --gold-dark:#a3844f;
+  --gold-text:#8a6d3f; /* WCAG AA-safe (4.8:1 on white) for small gold text on light backgrounds */
   --gold-light:#f6efe2;
   --midnight:#03101f;
   --sky:#eaf3ff;
@@ -28,7 +29,7 @@
 /* ---------- Premium hero ---------- */
 .p-hero{background:linear-gradient(180deg, #ffffff 0%, var(--sky) 100%);padding:100px 0 84px;border-bottom:1px solid var(--gray-100);}
 .p-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;}
-.p-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:20px;}
+.p-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text);margin-bottom:20px;}
 .p-hero h1{font-family:var(--font-heading);font-size:58px;line-height:1.08;letter-spacing:-0.015em;color:var(--ink);margin-bottom:22px;}
 .p-hero-sub{font-size:18px;color:var(--gray-600);max-width:520px;margin-bottom:10px;}
 .p-hero-note{font-size:14px;color:var(--gray-500);max-width:480px;margin-bottom:30px;}
@@ -39,15 +40,24 @@
 .p-dashboard-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;position:relative;}
 .p-dashboard-head span{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
 .p-dashboard-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block;margin-right:6px;}
+
+.p-donut{width:112px;height:112px;border-radius:50%;position:relative;margin:0 auto 24px;}
+.p-donut::before{content:'';position:absolute;inset:15px;border-radius:50%;background:var(--midnight);}
+.p-donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1;text-align:center;}
+.p-donut-center strong{font-family:var(--font-heading);font-size:20px;color:var(--white);}
+.p-donut-center span{font-size:8.5px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.04em;}
+
 .p-dashboard-rows{display:flex;flex-direction:column;gap:14px;position:relative;margin-bottom:22px;}
 .p-dashboard-row{display:flex;align-items:center;gap:12px;}
-.p-dashboard-label{font-size:12.5px;color:rgba(255,255,255,0.6);width:110px;flex-shrink:0;}
+.p-dash-swatch{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.p-dashboard-label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,0.6);width:118px;flex-shrink:0;}
 .p-dashboard-bar-track{flex:1;height:8px;border-radius:var(--radius-pill);background:rgba(255,255,255,0.08);overflow:hidden;}
-.p-dashboard-bar-fill{height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg, var(--teal), var(--gold));}
+.p-dashboard-bar-fill{height:100%;border-radius:var(--radius-pill);}
 .p-dashboard-pct{font-size:12.5px;color:rgba(255,255,255,0.85);width:38px;text-align:right;flex-shrink:0;}
-.p-dashboard-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:18px;position:relative;}
+.p-dashboard-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:18px;position:relative;gap:12px;}
 .p-dashboard-foot strong{display:block;color:var(--white);font-family:var(--font-heading);font-size:22px;}
 .p-dashboard-foot span{font-size:11.5px;color:rgba(255,255,255,0.5);}
+.p-dashboard-foot-phrase{font-family:var(--font-heading);font-size:14.5px;font-weight:600;color:var(--white);}
 
 /* ---------- Trust bar ---------- */
 .trust-bar{background:var(--white);border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);padding:36px 0;}
@@ -58,7 +68,8 @@
 }
 .trust-stat strong{display:block;font-family:var(--font-heading);font-size:34px;color:var(--ink);}
 .trust-stat span{font-size:12.5px;color:var(--gray-500);letter-spacing:.02em;}
-.trust-stat-text strong{font-size:16px;letter-spacing:.02em;color:var(--gold-dark);}
+.trust-stat-text strong{font-size:17px;letter-spacing:.01em;color:var(--gold-text);}
+.trust-stat-text span{font-size:11px;letter-spacing:.01em;}
 
 /* ---------- Goal selector ---------- */
 .goal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
@@ -95,7 +106,14 @@
 .product-block-icon{width:54px;height:54px;border-radius:var(--radius-sm);background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
 .product-block h2{font-family:var(--font-heading);font-size:26px;margin-bottom:6px;}
 .product-block-tagline{font-size:15px;color:var(--gray-600);margin-bottom:0;}
-.product-block-min{display:inline-block;font-size:12px;font-weight:700;color:var(--gold-dark);background:var(--gold-light);padding:5px 12px;border-radius:var(--radius-pill);margin:16px 0 0;}
+.product-block-min{display:inline-block;font-size:12px;font-weight:700;color:var(--gold-text);background:var(--gold-light);padding:5px 12px;border-radius:var(--radius-pill);margin:16px 0 0;}
+
+.product-strip{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--offwhite);border-radius:var(--radius-md);padding:16px 20px;margin-top:22px;}
+.product-strip-positioning{font-size:14px;font-weight:600;color:var(--ink);margin:0;flex:1 1 260px;}
+.product-strip-pillars{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--gray-500);font-weight:500;white-space:nowrap;}
+.product-strip-pillars .dot{color:var(--gray-400);}
+.product-strip-cta{background:none;border:none;color:var(--teal-dark);font-size:13.5px;font-weight:700;white-space:nowrap;padding:4px 0;}
+.product-strip-cta:hover{color:var(--teal);text-decoration:underline;}
 
 .product-body-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:32px;}
 .product-subhead{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gray-500);margin-bottom:14px;}
@@ -219,4 +237,6 @@
   .product-block{padding:26px;}
   .product-block-head{flex-direction:column;}
   .goal-match-badge{left:26px;}
+  .product-strip{flex-direction:column;align-items:flex-start;}
+  .product-strip-cta{align-self:flex-start;}
 }
