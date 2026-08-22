@@ -49,7 +49,7 @@
     var goldRim = new THREE.PointLight(0xc9a86a, 6, 12);
     goldRim.position.set(-3, 1.5, 2.5);
     scene.add(goldRim);
-    var blueFill = new THREE.PointLight(0x5b8cff, 5, 12);
+    var blueFill = new THREE.PointLight(0x00ae42, 5, 12);
     blueFill.position.set(2.5, -2, -2);
     scene.add(blueFill);
 
@@ -67,7 +67,7 @@
     rig.add(core);
 
     // Thin architectural ring accents
-    [ [1.55, 0x5b8cff, 0.35], [1.75, 0xc9a86a, 0.55] ].forEach(function(cfg){
+    [ [1.55, 0x00ae42, 0.35], [1.75, 0xc9a86a, 0.55] ].forEach(function(cfg){
       var ring = new THREE.Mesh(
         new THREE.TorusGeometry(cfg[0], 0.01, 8, 96),
         new THREE.MeshBasicMaterial({ color: cfg[1], transparent: true, opacity: cfg[2] })
@@ -80,7 +80,7 @@
     var nodeCount = 5;
     var nodeGroup = new THREE.Group();
     rig.add(nodeGroup);
-    var lineMat = new THREE.LineBasicMaterial({ color: 0x5b8cff, transparent: true, opacity: 0.28 });
+    var lineMat = new THREE.LineBasicMaterial({ color: 0x00ae42, transparent: true, opacity: 0.28 });
     for(var i = 0; i < nodeCount; i++){
       var angle = (i / nodeCount) * Math.PI * 2;
       var radius = 2.15;
@@ -91,7 +91,7 @@
       var node = new THREE.Mesh(
         new THREE.SphereGeometry(0.11, 20, 20),
         new THREE.MeshStandardMaterial({
-          color: isGold ? 0xc9a86a : 0x5b8cff,
+          color: isGold ? 0xc9a86a : 0x00ae42,
           emissive: isGold ? 0x5c4a26 : 0x1c2f5c,
           metalness: 0.6, roughness: 0.3
         })

@@ -70,7 +70,7 @@
 
       var mesh = new THREE.Mesh(
         new THREE.SphereGeometry(0.09, 16, 16),
-        new THREE.MeshStandardMaterial({ color: i % 2 === 0 ? 0xc9a86a : 0x5b8cff, metalness: 0.6, roughness: 0.35, transparent: true, opacity: 0 })
+        new THREE.MeshStandardMaterial({ color: i % 2 === 0 ? 0xc9a86a : 0x00ae42, metalness: 0.6, roughness: 0.35, transparent: true, opacity: 0 })
       );
       mesh.position.copy(pos);
       mesh.scale.setScalar(0.001);
@@ -78,7 +78,7 @@
 
       var line = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), pos.clone()]),
-        new THREE.LineBasicMaterial({ color: 0x5b8cff, transparent: true, opacity: 0 })
+        new THREE.LineBasicMaterial({ color: 0x00ae42, transparent: true, opacity: 0 })
       );
       nodeGroup.add(line);
 
