@@ -254,5 +254,5 @@ window.TF_PRODUCT_FAQ = [
   { q: 'How does the consultation process work?', a: 'You share your goals and current holdings, our wealth strategist reviews them, and you get a tailored recommendation — free, with no obligation to invest.' },
   { q: 'What documents are required?', a: 'Standard SEBI/AMFI-mandated KYC (PAN and address proof) applies across products. Specific onboarding documentation is confirmed during your consultation.' },
   { q: 'Can NRIs invest?', a: 'NRIs can generally invest in Indian mutual funds, PMS and AIF, subject to FEMA and scheme-specific eligibility norms. Speak with our wealth strategist to confirm what applies to your situation.' },
-  { q: 'How can I speak to an advisor?', a: 'Use any "Talk to an Advisor" or "Book a Wealth Consultation" button on this page, or reach us directly — our team responds within 2 hours during business hours.' }
+  { q: 'How can I speak to an advisor?', a: 'Use any "Talk to an Advisor" or "Book a Wealth Consultation" button on this page, or reach us directly — our wealth team will review your request and get in touch during business hours.' }
 ];

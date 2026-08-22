@@ -9,6 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<script type="importmap">
+{"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
+</script>
 </head>
 <body>
 
@@ -50,7 +53,7 @@
       </div>
       <p class="hero-credibility"><strong>16+</strong> years<span class="dot">·</span><strong>100+</strong> Ultra HNIs served<span class="dot">·</span>AMFI &amp; APMI Registered</p>
     </div>
-    <div class="wealth-arch reveal-3d">
+    <div class="wealth-arch reveal-3d" id="wealthArch">
       <div class="wealth-arch-core"></div>
       <div class="wealth-arch-nodes">
         <div class="arch-node arch-node-1"><span>PMS</span></div>
@@ -218,6 +221,7 @@
     </div>
 
     <div class="health-widget" id="healthWidget">
+      <div class="health-visual" id="healthVisual"></div>
       <div class="hw-progress"><span id="hwStepLabel">STEP 1 OF 4</span><div class="hw-bar"><div class="hw-bar-fill" id="hwBarFill"></div></div></div>
 
       <div class="hw-step" data-step="1">
@@ -383,7 +387,7 @@
       </div>
       <div class="faq-item">
         <button type="button" class="faq-q">How soon will someone get in touch after I submit the form? <span>+</span></button>
-        <div class="faq-a"><p>Our wealth consultant will reach out within 2 hours during business hours (Mon–Sat, 9:30 AM – 6:30 PM IST).</p></div>
+        <div class="faq-a"><p>Our wealth team will review your request and get in touch during business hours (Mon–Sat, 9:30 AM – 6:30 PM IST).</p></div>
       </div>
     </div>
   </div>
@@ -395,7 +399,7 @@
     <div class="section-head">
       <span class="eyebrow">Get In Touch</span>
       <h2>Your Portfolio Deserves<br>Better Architecture.</h2>
-      <p class="section-sub">We work with a limited number of clients to maintain depth over scale. Fill the form — our team will reach out within 2 hours.</p>
+      <p class="section-sub">We work with a limited number of clients to maintain depth over scale. Fill the form — our wealth team will review your request and get in touch.</p>
     </div>
 
     <div class="contact-grid">
@@ -412,7 +416,7 @@
 
       <div class="lead-form-card">
         <h3>Request a Callback</h3>
-        <p class="muted-sm">Our wealth consultant will get back to you within 2 hours.</p>
+        <p class="muted-sm">Our wealth team will review your request and get in touch.</p>
         <div class="hw-progress"><span id="formStepLabel">STEP 1 OF 3 — YOUR DETAILS</span><div class="hw-bar"><div class="hw-bar-fill" id="formBarFill"></div></div></div>
 
         <form id="leadForm" novalidate>
@@ -466,7 +470,7 @@
           <div class="form-step form-success" data-step="success" hidden>
             <div class="success-check">✓</div>
             <h3>Request Received</h3>
-            <p>Thank you — our wealth consultant will call you within 2 hours during business hours.</p>
+            <p>Thank you — our wealth team will review your request and get in touch during business hours.</p>
           </div>
         </form>
       </div>
@@ -537,6 +541,8 @@
 <script src="assets/calc-engine.js"></script>
 <script src="assets/calc-configs.js"></script>
 <script src="assets/script.js"></script>
+<script type="module" src="assets/hero3d.js"></script>
+<script type="module" src="assets/health3d.js"></script>
 <script>
 (function(){
   "use strict";

@@ -128,7 +128,9 @@ p{margin:0 0 16px;color:var(--gray-600);}
 .wealth-arch-core::before{content:'';position:absolute;inset:14px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);}
 .wealth-arch-core::after{content:'';position:absolute;top:14%;left:20%;width:36%;height:22%;border-radius:50%;background:rgba(255,255,255,0.18);filter:blur(6px);}
 @keyframes arch-rotate{from{transform:rotateY(0deg);}to{transform:rotateY(360deg);}}
-.wealth-arch-nodes{position:absolute;inset:0;}
+.wealth-arch-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
+.wealth-arch.has-webgl .wealth-arch-core{display:none;}
+.wealth-arch-nodes{position:absolute;inset:0;z-index:2;}
 .arch-node{position:absolute;display:flex;flex-direction:column;align-items:center;gap:6px;animation:arch-float 6s ease-in-out infinite;}
 .arch-node span{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.85);font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:var(--radius-pill);backdrop-filter:blur(4px);white-space:nowrap;}
 .arch-node-1{top:6%;left:6%;animation-delay:0s;}
@@ -276,6 +278,8 @@ h2{font-size:38px;}
 .muted-sm{font-size:13px;color:var(--gray-500);}
 
 .health-widget,.risk-widget{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:32px;border:1px solid var(--gray-100);}
+.health-visual{width:140px;height:140px;margin:0 auto 20px;}
+.health-visual[hidden]{display:none;}
 .risk-widget{background:var(--near-black);border-color:var(--border-light);}
 .hw-progress{margin-bottom:24px;}
 .hw-progress span{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--gray-500);}
@@ -435,7 +439,7 @@ input[type="range"]{width:100%;accent-color:var(--electric);height:5px;}
   .hero h1{font-size:40px;}
   .wealth-arch{min-height:320px;}
 }
-@media (max-width:720px){
+@media (max-width:900px){
   .nav-links{display:none;}
   .nav-actions{display:none;}
   .nav-toggle{display:flex;}
@@ -450,6 +454,8 @@ input[type="range"]{width:100%;accent-color:var(--electric);height:5px;}
   .nav.nav-open .nav-links a,.nav.nav-open .nav-actions a{font-size:22px;font-weight:600;padding:12px 0;border-bottom:1px solid var(--gray-100);}
   .nav.nav-open .nav-actions{top:auto;}
   .nav.nav-open .nav-actions .btn{margin-top:12px;width:100%;}
+}
+@media (max-width:720px){
   .service-grid,.calc-grid,.tools-page-grid,.trust-strip-grid,.founder-blocks,.process-row{grid-template-columns:1fr;}
   .risk-shapes{grid-template-columns:1fr 1fr;}
   .founder-photo{width:140px;height:140px;margin:0 auto;font-size:44px;}

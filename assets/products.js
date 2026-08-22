@@ -476,7 +476,7 @@
         '</div>' +
         '<button type="submit" class="btn btn-primary btn-block" style="margin-top:14px;">Talk to an Advisor</button>' +
       '</form>' +
-      '<div class="mini-enquiry-success">✓ Thank you — our wealth consultant will call you within 2 hours.</div>';
+      '<div class="mini-enquiry-success">✓ Thank you — our wealth team will review your request and get in touch.</div>';
 
     container.querySelector('form').addEventListener('submit', function(e){
       e.preventDefault();
