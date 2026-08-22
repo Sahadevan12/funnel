@@ -54,9 +54,16 @@ window.TF = (function(){
   if(navToggle && nav){
     navToggle.addEventListener('click', function(){
       nav.classList.toggle('nav-open');
+      document.body.style.overflow = nav.classList.contains('nav-open') ? 'hidden' : '';
     });
-    document.querySelectorAll('.nav-links a').forEach(function(a){
-      a.addEventListener('click', function(){ nav.classList.remove('nav-open'); });
+    document.querySelectorAll('.nav-links a, .nav-actions a').forEach(function(a){
+      a.addEventListener('click', function(){ nav.classList.remove('nav-open'); document.body.style.overflow = ''; });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && nav.classList.contains('nav-open')){
+        nav.classList.remove('nav-open');
+        document.body.style.overflow = '';
+      }
     });
   }
 

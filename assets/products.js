@@ -316,12 +316,17 @@
     section.className = 'product-section reveal';
     section.id = 'product-' + product.id;
     section.dataset.productId = product.id;
+    var iconClass = { pms:'icon-pms', 'mutual-funds':'icon-mf', aif:'icon-aif', 'portfolio-overhaul':'icon-overhaul' }[product.id] || 'icon-pms';
+    var glyphInner = product.id === 'mutual-funds' ? '<span></span>' :
+      product.id === 'aif' ? '<span></span>' :
+      product.id === 'portfolio-overhaul' ? '<span></span><span></span><span></span><span></span>' :
+      '<span></span><span></span><span></span>';
 
     section.innerHTML =
       '<div class="product-block">' +
         '<span class="goal-match-badge" hidden>★ Matches Your Goal</span>' +
         '<div class="product-block-head">' +
-          '<div class="product-block-icon">' + product.icon + '</div>' +
+          '<div class="solution-icon-3d ' + iconClass + '"><div class="glyph">' + glyphInner + '</div></div>' +
           '<div><h2>' + product.name + '</h2><p class="product-block-tagline">' + product.tagline + '</p>' +
           (product.minInvestment ? '<span class="product-block-min">Minimum ' + product.minInvestment + '</span>' : '') +
           '</div>' +

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goal Planning Tools | True Funnel</title>
+<meta name="description" content="Run the numbers on SIP, retirement, wealth goals, education, home purchase, tax saving and more — free calculators from True Funnel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="announce-bar">
+  <span>AMFI Reg. No: ARN-360113</span><span class="dot">·</span><span>APMI Reg. No: APRN09086</span><span class="dot">·</span><span>Limited Clientele</span>
+</div>
+
+<header class="nav">
+  <div class="nav-inner container">
+    <a href="index.html" class="logo"><span class="logo-mark">TF</span><span class="logo-text">TrueFunnel</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="products.html">Solutions</a>
+      <a href="index.html#process">How We Work</a>
+      <a href="index.html#insights">Insights</a>
+      <a href="tools.html">Tools</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="index.html#risk-profile" class="nav-link-cta">Risk Profile</a>
+      <a href="index.html#contact" class="btn btn-primary btn-sm nav-cta">Book a Wealth Consultation</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="section tools-hero">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Goal Planning Tools</span>
+      <h1>Run The Numbers</h1>
+      <p class="section-sub">Every calculator on the site, in one place. Standard financial-mathematics formulas — no assumptions about what True Funnel can achieve for you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light">
+  <div class="container">
+    <div class="tools-page-grid" id="toolsGrid"></div>
+  </div>
+</section>
+
+<section class="section final-cta-section">
+  <div class="container">
+    <div class="final-cta">
+      <h2>Ready To Talk Through The Numbers?</h2>
+      <p>A calculator is a starting point. A conversation with a wealth strategist turns it into a plan.</p>
+      <div class="final-cta-row">
+        <a href="index.html#contact" class="btn btn-primary">Book a Wealth Consultation</a>
+        <button type="button" class="btn btn-ghost-light" data-open-review-modal>Get My Portfolio Review</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><span class="logo-mark">TF</span><span class="logo-text">TrueFunnel</span></a>
+      <p>High-conviction portfolios for HNIs. Mutual Funds, PMS, and AIF — curated, not collected. Few clients, full attention.</p>
+      <p class="muted-sm">AMFI Reg. No: ARN-360113 | APMI Reg. No: APRN09086</p>
+    </div>
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <a href="products.html#product-pms">Portfolio Management</a>
+      <a href="products.html#product-mutual-funds">Mutual Funds</a>
+      <a href="products.html#product-aif">AIF &amp; Alternatives</a>
+      <a href="products.html#product-portfolio-overhaul">Portfolio Overhaul</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#founder">Founder</a>
+      <a href="index.html#faq">FAQs</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:invest@truefunnel.in">invest@truefunnel.in</a>
+      <a href="tel:+919909999684">+91 99099 99684</a>
+      <p class="muted-sm">True Funnel Financial Services<br>Ahmedabad, Gujarat</p>
+    </div>
+  </div>
+  <div class="container">
+    <p class="footer-copy">© True Funnel. All rights reserved.</p>
+    <p class="footer-disclaimer">Disclaimer: Mutual fund investments are subject to market risks. Please read the scheme information document carefully before investing. Past performance is not indicative of future returns. True Funnel is a mutual fund distributor registered with AMFI (ARN-360113) and APMI (APRN09086). The calculators on this page use standard financial-mathematics formulas based on the figures you enter — they are illustrative only and not a projection, promise or guarantee of actual results. Please consult a qualified professional before making any investment decisions.</p>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="exitModal" hidden>
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="exitModalClose" aria-label="Close">×</button>
+    <div class="modal-icon">🎯</div>
+    <h3>Free 15-Min<br>Portfolio Review</h3>
+    <p>Our wealth strategist will review your current investments and identify opportunities to improve portfolio structure, diversification and alignment with your goals.</p>
+    <a href="index.html#contact" class="btn btn-primary btn-block" id="exitModalCta">Get My Portfolio Review</a>
+    <p class="muted-sm center">🔒 100% confidential · No spam</p>
+  </div>
+</div>
+
+<script src="assets/common.js"></script>
+<script src="assets/calc-engine.js"></script>
+<script src="assets/calc-configs.js"></script>
+<script>
+(function(){
+  "use strict";
+  var order = ['sip','lumpsum','retirement','goal','education','home','swp','emergency','inflation','tax','wealthgap'];
+  var host = document.getElementById('toolsGrid');
+  order.forEach(function(key){
+    var card = document.createElement('div');
+    card.className = 'calc-card';
+    host.appendChild(card);
+    TF_renderCalculator(card, key + '_', TF_CALCULATORS[key]);
+  });
+})();
+</script>
+</body>
+</html>

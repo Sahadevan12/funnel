@@ -1,70 +1,11 @@
 (function(){
   "use strict";
 
-  var fmtINR = TF.fmtINR, fmtCompact = TF.fmtCompact, fmtNum = TF.fmtNum;
-  var sipFutureValue = TF.sipFutureValue, lumpsumFutureValue = TF.lumpsumFutureValue;
-  var requiredSIPForGoal = TF.requiredSIPForGoal, emi = TF.emi;
-
-  /* ---------------- SIP Calculator ---------------- */
-  var sipAmount = document.getElementById('sipAmount');
-  var sipReturn = document.getElementById('sipReturn');
-  var sipYears = document.getElementById('sipYears');
-  if(sipAmount && sipReturn && sipYears){
-    var updateSIP = function(){
-      var amt = +sipAmount.value, ret = +sipReturn.value, yrs = +sipYears.value;
-      document.getElementById('sipAmountVal').textContent = fmtNum(amt);
-      document.getElementById('sipReturnVal').textContent = ret;
-      document.getElementById('sipYearsVal').textContent = yrs;
-      var fv = sipFutureValue(amt, ret, yrs);
-      var invested = amt*yrs*12;
-      var gain = fv-invested;
-      document.getElementById('sipCorpus').textContent = fmtCompact(fv);
-      document.getElementById('sipBreakdown').textContent = 'Invested: ' + fmtINR(invested) + ' · Wealth Gain: ' + fmtINR(gain);
-    };
-    [sipAmount, sipReturn, sipYears].forEach(function(el){ el.addEventListener('input', updateSIP); });
-    updateSIP();
-  }
-
-  /* ---------------- Lump Sum Calculator ---------------- */
-  var lsAmount = document.getElementById('lsAmount');
-  var lsReturn = document.getElementById('lsReturn');
-  var lsYears = document.getElementById('lsYears');
-  if(lsAmount && lsReturn && lsYears){
-    var updateLS = function(){
-      var amt = +lsAmount.value, ret = +lsReturn.value, yrs = +lsYears.value;
-      document.getElementById('lsAmountVal').textContent = fmtNum(amt);
-      document.getElementById('lsReturnVal').textContent = ret;
-      document.getElementById('lsYearsVal').textContent = yrs;
-      var fv = lumpsumFutureValue(amt, ret, yrs);
-      var gain = fv-amt;
-      document.getElementById('lsFuture').textContent = fmtCompact(fv);
-      document.getElementById('lsBreakdown').textContent = 'Invested: ' + fmtINR(amt) + ' · Wealth Gain: ' + fmtINR(gain);
-    };
-    [lsAmount, lsReturn, lsYears].forEach(function(el){ el.addEventListener('input', updateLS); });
-    updateLS();
-  }
-
-  /* ---------------- Wealth Gap Calculator ---------------- */
-  var gapCorpus = document.getElementById('gapCorpus');
-  var gapCurrent = document.getElementById('gapCurrent');
-  var gapOptimised = document.getElementById('gapOptimised');
-  var gapYears = document.getElementById('gapYears');
-  if(gapCorpus && gapCurrent && gapOptimised && gapYears){
-    var updateGap = function(){
-      var corpus = +gapCorpus.value, cur = +gapCurrent.value, opt = +gapOptimised.value, yrs = +gapYears.value;
-      document.getElementById('gapCorpusVal').textContent = fmtNum(corpus);
-      document.getElementById('gapCurrentVal').textContent = cur;
-      document.getElementById('gapOptimisedVal').textContent = opt;
-      document.getElementById('gapYearsVal').textContent = yrs;
-      var fvCur = lumpsumFutureValue(corpus, cur, yrs);
-      var fvOpt = lumpsumFutureValue(corpus, Math.max(opt,cur), yrs);
-      var gap = Math.max(fvOpt-fvCur, 0);
-      document.getElementById('gapResult').textContent = fmtCompact(gap);
-      document.getElementById('gapBreakdown').textContent = 'At ' + cur + '%: ' + fmtCompact(fvCur) + ' · At ' + opt + '%: ' + fmtCompact(fvOpt);
-    };
-    [gapCorpus, gapCurrent, gapOptimised, gapYears].forEach(function(el){ el.addEventListener('input', updateGap); });
-    updateGap();
-  }
+  /* ---------------- Featured calculators (SIP, Retirement, Wealth Goal) ---------------- */
+  ['sip', 'retirement', 'goal'].forEach(function(key){
+    var host = document.getElementById('calc-' + key);
+    if(host){ TF_renderCalculator(host, key + '_', TF_CALCULATORS[key]); }
+  });
 
   /* ---------------- Portfolio Health Check widget ---------------- */
   (function(){
@@ -213,6 +154,8 @@
       var pct = Math.min(total/40, 1);
       document.getElementById('riskRingFg').style.strokeDashoffset = circumference - pct*circumference;
       resultBox.hidden = false;
+
+      document.querySelectorAll('.risk-shape').forEach(function(s){ s.classList.toggle('active', s.dataset.profile === profile.replace('-Oriented','')); });
     }
 
     startBtn.addEventListener('click', function(){
@@ -224,6 +167,7 @@
 
     document.getElementById('riskRestart').addEventListener('click', function(){
       current = 0; total = 0;
+      document.querySelectorAll('.risk-shape').forEach(function(s){ s.classList.remove('active'); });
       renderQuestion();
     });
   })();
@@ -263,186 +207,6 @@
       stepLabel.textContent = 'DONE';
       barFill.style.width = '100%';
     });
-  })();
-
-  /* ---------------- 8 extra goal-planning tool modals ---------------- */
-  (function(){
-    var modal = document.getElementById('toolModal');
-    if(!modal) return;
-    var closeBtn = document.getElementById('toolModalClose');
-    var titleEl = document.getElementById('toolModalTitle');
-    var descEl = document.getElementById('toolModalDesc');
-    var iconEl = document.getElementById('toolModalIcon');
-    var fieldsEl = document.getElementById('toolModalFields');
-    var resultLabelEl = document.getElementById('toolModalResultLabel');
-    var resultEl = document.getElementById('toolModalResult');
-    var subEl = document.getElementById('toolModalSub');
-
-    var tools = {
-      retirement: {
-        icon:'🏖️', title:'Retirement Corpus', desc:"How much do you need to retire comfortably?",
-        fields:[
-          {id:'expense', label:'Monthly Expense Today (₹)', def:60000, min:10000, max:500000, step:5000},
-          {id:'curAge', label:'Current Age', def:35, min:18, max:60, step:1},
-          {id:'retAge', label:'Retirement Age', def:60, min:40, max:70, step:1},
-          {id:'lifeExp', label:'Life Expectancy', def:85, min:70, max:100, step:1},
-          {id:'inflation', label:'Inflation (% p.a.)', def:6, min:2, max:12, step:0.5},
-          {id:'postReturn', label:'Post-Retirement Return (% p.a.)', def:8, min:2, max:15, step:0.5}
-        ],
-        resultLabel:'Corpus Needed At Retirement',
-        calc:function(v){
-          var yearsToRet = Math.max(v.retAge - v.curAge, 0);
-          var retYears = Math.max(v.lifeExp - v.retAge, 1);
-          var futureMonthlyExpense = v.expense * Math.pow(1+v.inflation/100, yearsToRet);
-          var realReturn = (((1+v.postReturn/100)/(1+v.inflation/100))-1);
-          var annualExpense = futureMonthlyExpense*12;
-          var corpus;
-          if(Math.abs(realReturn) < 0.0001){ corpus = annualExpense*retYears; }
-          else { corpus = annualExpense * (1-Math.pow(1+realReturn,-retYears))/realReturn * (1+realReturn); }
-          return { result: corpus, sub: 'Future monthly expense at retirement: ' + fmtINR(futureMonthlyExpense) + ' · ' + retYears + ' yrs post-retirement' };
-        }
-      },
-      education: {
-        icon:'🎓', title:"Child's Education", desc:'Plan for rising education costs in India & abroad.',
-        fields:[
-          {id:'cost', label:'Current Education Cost (₹)', def:2000000, min:200000, max:20000000, step:100000},
-          {id:'years', label:'Years To Goal', def:12, min:1, max:25, step:1},
-          {id:'inflation', label:'Education Inflation (% p.a.)', def:8, min:4, max:15, step:0.5},
-          {id:'returnPct', label:'Expected SIP Return (% p.a.)', def:12, min:4, max:20, step:0.5}
-        ],
-        resultLabel:'Required Monthly SIP',
-        calc:function(v){
-          var futureCost = v.cost * Math.pow(1+v.inflation/100, v.years);
-          var sip = requiredSIPForGoal(futureCost, v.returnPct, v.years);
-          return { result: sip, sub: 'Future cost of education: ' + fmtCompact(futureCost) };
-        }
-      },
-      emergency: {
-        icon:'🛡️', title:'Emergency Fund', desc:'Calculate your ideal safety net amount.',
-        fields:[
-          {id:'expense', label:'Monthly Household Expense (₹)', def:75000, min:10000, max:1000000, step:5000},
-          {id:'months', label:'Months Of Cover Needed', def:6, min:3, max:24, step:1}
-        ],
-        resultLabel:'Recommended Emergency Fund',
-        calc:function(v){
-          return { result: v.expense*v.months, sub: v.months + ' months × ' + fmtINR(v.expense) + ' monthly expense' };
-        }
-      },
-      home: {
-        icon:'🏠', title:'Home Purchase', desc:'Down payment + EMI readiness calculator.',
-        fields:[
-          {id:'value', label:'Home Value (₹)', def:8000000, min:1000000, max:100000000, step:100000},
-          {id:'downPct', label:'Down Payment (%)', def:20, min:10, max:50, step:1},
-          {id:'rate', label:'Loan Interest Rate (% p.a.)', def:8.5, min:5, max:15, step:0.1},
-          {id:'tenure', label:'Loan Tenure (Years)', def:20, min:5, max:30, step:1}
-        ],
-        resultLabel:'Estimated Monthly EMI',
-        calc:function(v){
-          var downPayment = v.value*v.downPct/100;
-          var loanAmount = v.value-downPayment;
-          var m = emi(loanAmount, v.rate, v.tenure);
-          return { result: m, sub: 'Down payment: ' + fmtCompact(downPayment) + ' · Loan amount: ' + fmtCompact(loanAmount) };
-        }
-      },
-      swp: {
-        icon:'💸', title:'SWP / Income', desc:'Monthly income from your mutual fund corpus.',
-        fields:[
-          {id:'corpus', label:'Corpus Amount (₹)', def:5000000, min:100000, max:100000000, step:100000},
-          {id:'returnPct', label:'Expected Return (% p.a.)', def:10, min:2, max:20, step:0.5},
-          {id:'years', label:'Withdrawal Period (Years)', def:20, min:1, max:40, step:1}
-        ],
-        resultLabel:'Sustainable Monthly Withdrawal',
-        calc:function(v){
-          var n = v.years*12, r = v.returnPct/1200;
-          var m = r === 0 ? v.corpus/n : (v.corpus*r) / (1-Math.pow(1+r,-n));
-          return { result: m, sub: 'Corpus lasts ' + v.years + ' years at ' + v.returnPct + '% p.a.' };
-        }
-      },
-      inflation: {
-        icon:'📉', title:'Inflation Impact', desc:'What will ₹1 Cr be worth in 20 years?',
-        fields:[
-          {id:'amount', label:'Amount Today (₹)', def:10000000, min:100000, max:100000000, step:100000},
-          {id:'inflation', label:'Inflation (% p.a.)', def:6, min:2, max:12, step:0.5},
-          {id:'years', label:'Years', def:20, min:1, max:40, step:1}
-        ],
-        resultLabel:'Equivalent Purchasing Power',
-        calc:function(v){
-          var real = v.amount/Math.pow(1+v.inflation/100, v.years);
-          return { result: real, sub: fmtCompact(v.amount) + ' today will feel like ' + fmtCompact(real) + " in today's money" };
-        }
-      },
-      tax: {
-        icon:'🧾', title:'Tax Saving (80C)', desc:'Optimise your ELSS and 80C investments.',
-        fields:[
-          {id:'invested', label:'Planned 80C Investment (₹, max 1.5L)', def:150000, min:0, max:150000, step:5000},
-          {id:'slab', label:'Tax Slab (%)', def:30, min:5, max:30, step:5}
-        ],
-        resultLabel:'Estimated Tax Saved',
-        calc:function(v){
-          var eligible = Math.min(v.invested, 150000);
-          var saved = eligible*v.slab/100;
-          return { result: saved, sub: 'Eligible investment: ' + fmtINR(eligible) + ' at ' + v.slab + '% slab (plus applicable cess)' };
-        }
-      },
-      goal: {
-        icon:'🎯', title:'Wealth Goal', desc:'Custom target — how much SIP to reach ₹X?',
-        fields:[
-          {id:'target', label:'Target Amount (₹)', def:10000000, min:100000, max:200000000, step:100000},
-          {id:'years', label:'Time Period (Years)', def:15, min:1, max:40, step:1},
-          {id:'returnPct', label:'Expected Return (% p.a.)', def:12, min:4, max:20, step:0.5}
-        ],
-        resultLabel:'Required Monthly SIP',
-        calc:function(v){
-          var sip = requiredSIPForGoal(v.target, v.returnPct, v.years);
-          return { result: sip, sub: 'To reach ' + fmtCompact(v.target) + ' in ' + v.years + ' years' };
-        }
-      }
-    };
-
-    function renderTool(key){
-      var tool = tools[key];
-      iconEl.textContent = tool.icon;
-      titleEl.textContent = tool.title;
-      descEl.textContent = tool.desc;
-      resultLabelEl.textContent = tool.resultLabel;
-
-      var html = '';
-      tool.fields.forEach(function(f){
-        html += '<div class="calc-field">' +
-          '<div class="calc-field-head"><label for="tf_' + f.id + '">' + f.label + '</label><span class="calc-val" id="tfval_' + f.id + '">' + fmtNum(f.def) + '</span></div>' +
-          '<input type="range" id="tf_' + f.id + '" min="' + f.min + '" max="' + f.max + '" step="' + f.step + '" value="' + f.def + '">' +
-          '</div>';
-      });
-      fieldsEl.innerHTML = html;
-
-      function recompute(){
-        var values = {};
-        tool.fields.forEach(function(f){
-          var el = document.getElementById('tf_' + f.id);
-          values[f.id] = +el.value;
-          document.getElementById('tfval_' + f.id).textContent = fmtNum(+el.value);
-        });
-        var out = tool.calc(values);
-        resultEl.textContent = fmtCompact(out.result);
-        subEl.textContent = out.sub;
-      }
-      tool.fields.forEach(function(f){
-        document.getElementById('tf_' + f.id).addEventListener('input', recompute);
-      });
-      recompute();
-    }
-
-    document.getElementById('moreToolsGrid').addEventListener('click', function(e){
-      var card = e.target.closest('.tool-card');
-      if(!card) return;
-      renderTool(card.dataset.tool);
-      modal.hidden = false;
-    });
-
-    function close(){ modal.hidden = true; }
-    closeBtn.addEventListener('click', close);
-    modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
-    document.getElementById('toolModalCta').addEventListener('click', close);
   })();
 
 })();
