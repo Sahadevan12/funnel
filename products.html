@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Solutions — PMS, Mutual Funds, AIF & Portfolio Overhaul | True Funnel</title>
+<meta name="description" content="Explore True Funnel's investment solutions — Portfolio Management Services, Mutual Funds, AIF & Structured Products, and Portfolio Overhaul — matched to your goals, with calculators and a free advisor consultation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/products.css">
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  <span>SEBI Registered</span><span class="dot">·</span><span>AMFI Certified (ARN-360113)</span><span class="dot">|</span><span>APMI Certified (APRN09086)</span><span class="dot">·</span><span>Limited Clientele</span>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner container">
+    <a href="index.html" class="logo"><span class="logo-mark">TF</span><span class="logo-text">TrueFunnel</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="products.html">Products</a>
+      <a href="index.html#founder">Founder</a>
+      <a href="index.html#insights">Insights</a>
+      <a href="index.html#risk-profile">Risk Profile</a>
+      <a href="index.html#tools">Tools</a>
+      <a href="#product-faq">FAQ</a>
+    </nav>
+    <a href="index.html#contact" class="btn btn-primary btn-sm nav-cta">Book a Wealth Consultation</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- 01 — PREMIUM HERO -->
+<section class="p-hero">
+  <div class="container p-hero-grid">
+    <div class="reveal">
+      <div class="p-hero-eyebrow">✦ Investment Solutions</div>
+      <h1>Build. Grow. Protect. Optimise.</h1>
+      <p class="p-hero-sub">Investment solutions designed around your goals, risk profile and long-term wealth journey.</p>
+      <div class="p-hero-cta-row">
+        <a href="index.html#contact" class="btn btn-primary">Book a Wealth Consultation</a>
+        <a href="#goal-selector" class="btn btn-ghost-dark">Explore Solutions</a>
+      </div>
+    </div>
+    <div class="p-dashboard reveal">
+      <div class="p-dashboard-head"><span><span class="p-dashboard-dot"></span>ILLUSTRATIVE ALLOCATION</span><span>Conceptual</span></div>
+      <div class="p-dashboard-rows">
+        <div class="p-dashboard-row"><span class="p-dashboard-label">Equity</span><div class="p-dashboard-bar-track"><div class="p-dashboard-bar-fill" style="width:45%;"></div></div><span class="p-dashboard-pct">45%</span></div>
+        <div class="p-dashboard-row"><span class="p-dashboard-label">Debt</span><div class="p-dashboard-bar-track"><div class="p-dashboard-bar-fill" style="width:25%;"></div></div><span class="p-dashboard-pct">25%</span></div>
+        <div class="p-dashboard-row"><span class="p-dashboard-label">PMS / AIF</span><div class="p-dashboard-bar-track"><div class="p-dashboard-bar-fill" style="width:20%;"></div></div><span class="p-dashboard-pct">20%</span></div>
+        <div class="p-dashboard-row"><span class="p-dashboard-label">Cash / Liquid</span><div class="p-dashboard-bar-track"><div class="p-dashboard-bar-fill" style="width:10%;"></div></div><span class="p-dashboard-pct">10%</span></div>
+      </div>
+      <div class="p-dashboard-foot"><div><strong>4</strong><span>Solutions, One Strategy</span></div><span>For illustration only</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — TRUST / CREDIBILITY BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-grid" id="trustBarGrid"></div>
+  </div>
+</div>
+
+<!-- 03 — GOAL-BASED ENTRY -->
+<section class="section" id="goal-selector">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Start Here</span>
+      <h2>What Are You Looking To Achieve?</h2>
+      <p class="section-sub">Choose a goal and we'll point you to the solutions built for it.</p>
+    </div>
+    <div class="goal-grid reveal" id="goalGrid"></div>
+    <p class="goal-hint">Select a goal to highlight the matching solutions below.</p>
+  </div>
+</section>
+
+<!-- STICKY PRODUCT SUBNAV -->
+<nav class="product-subnav">
+  <div class="product-subnav-inner" id="productSubnav"></div>
+</nav>
+
+<!-- 04 — FEATURED PRODUCT: PMS -->
+<section class="section">
+  <div class="container">
+    <div class="featured-product reveal">
+      <div class="featured-grid">
+        <div>
+          <span class="featured-badge">★ Flagship Solution</span>
+          <h2>Portfolio Management Services</h2>
+          <p>A professionally managed portfolio built around your goals, risk profile and wealth objectives.</p>
+          <ul class="featured-list" id="featuredBenefits"></ul>
+          <a href="#product-pms" class="btn btn-primary">Explore PMS</a>
+        </div>
+        <div class="p-dashboard">
+          <div class="p-dashboard-head"><span><span class="p-dashboard-dot"></span>PMS · STRUCTURE VIEW</span><span>Min ₹50L</span></div>
+          <div class="p-dashboard-rows">
+            <div class="p-dashboard-row"><span class="p-dashboard-label">Multi-Cap</span><div class="p-dashboard-bar-track"><div class="p-dashboard-bar-fill" style="width:35%;"></div></div><span class="p-dashboard-pct">35%</span></div>
+            <div class="p-dashboard-row"><span class="p-dashboard-label">Flexi-Cap</span><div class="p-dashboard-bar-track"><div class="p-dashboard-bar-fill" style="width:30%;"></div></div><span class="p-dashboard-pct">30%</span></div>
+            <div class="p-dashboard-row"><span class="p-dashboard-label">Quant-Based</span><div class="p-dashboard-bar-track"><div class="p-dashboard-bar-fill" style="width:20%;"></div></div><span class="p-dashboard-pct">20%</span></div>
+            <div class="p-dashboard-row"><span class="p-dashboard-label">Thematic</span><div class="p-dashboard-bar-track"><div class="p-dashboard-bar-fill" style="width:15%;"></div></div><span class="p-dashboard-pct">15%</span></div>
+          </div>
+          <div class="p-dashboard-foot"><div><strong>15+</strong><span>PMS Strategies Compared</span></div><span>Illustrative mix</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 / 06 — ALL INVESTMENT SOLUTIONS (reusable product template) -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">All Investment Solutions</span>
+      <h2>Four Ways We Build, Grow &amp; Protect Wealth</h2>
+      <p class="section-sub">Every solution below follows the same structure — why it fits you, who it's for, how we help, and a calculator to run your own numbers.</p>
+    </div>
+    <div id="allProductsGrid" style="display:flex;flex-direction:column;gap:28px;"></div>
+  </div>
+</section>
+
+<!-- 07 — PRODUCT COMPARISON -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Compare</span>
+      <h2>Not Sure Which Solution Is Right For You?</h2>
+      <p class="section-sub">A side-by-side view across our four solutions.</p>
+    </div>
+    <div class="comparison-scroll reveal" id="comparisonTableHost"></div>
+  </div>
+</section>
+
+<!-- 08 — OUR WEALTH MANAGEMENT PROCESS -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Process</span>
+      <h2>How We Work With You</h2>
+      <p class="section-sub">Four steps, from first conversation to an actively managed portfolio.</p>
+    </div>
+    <div class="timeline reveal" id="processTimeline"></div>
+  </div>
+</section>
+
+<!-- 09 — PERFORMANCE / STRATEGY -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How Value Gets Added</span>
+      <h2>Strategy, Not Speculation</h2>
+      <p class="section-sub">Professional management adds value through a repeatable process — not predictions.</p>
+    </div>
+    <div class="flow-steps reveal" id="strategyFlow"></div>
+  </div>
+</section>
+
+<!-- 10 — FEE / VALUE -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Transparency</span>
+      <h2>Understand What You're Paying For</h2>
+      <p class="section-sub">Every solution above includes the following as standard — not a hidden extra.</p>
+    </div>
+    <div class="fee-grid reveal" id="feeGrid"></div>
+  </div>
+</section>
+
+<!-- 11 — NRI SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="nri-section reveal">
+      <div class="nri-grid">
+        <div>
+          <span class="eyebrow eyebrow-light">For NRI Investors</span>
+          <h2>Invest in India. From Anywhere in the World.</h2>
+          <p>We work with NRI clients across time zones — remote consultations, and access to our PMS, Mutual Fund and AIF solutions from wherever you are.</p>
+          <ul class="nri-points">
+            <li>Remote consultations scheduled around your time zone</li>
+            <li>Access to the same PMS, Mutual Fund and AIF solutions</li>
+            <li>Ongoing portfolio monitoring while you're abroad</li>
+          </ul>
+          <a href="index.html#contact" class="btn btn-primary">Explore NRI Solutions</a>
+        </div>
+        <div class="nri-routes">
+          <div class="nri-route"><span>USA</span><span class="nri-arrow">→</span><span>India</span></div>
+          <div class="nri-route"><span>UAE</span><span class="nri-arrow">→</span><span>India</span></div>
+          <div class="nri-route"><span>UK</span><span class="nri-arrow">→</span><span>India</span></div>
+          <div class="nri-route"><span>Singapore</span><span class="nri-arrow">→</span><span>India</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 — TESTIMONIALS -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Client Voices</span>
+      <h2>Trusted By Investors Like You</h2>
+      <p class="section-sub">Sample placeholders shown below — to be replaced with real client testimonials.</p>
+    </div>
+    <div class="testimonial-grid reveal" id="testimonialGrid"></div>
+  </div>
+</section>
+
+<!-- 13 — FAQ -->
+<section class="section" id="product-faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Common Questions About Our Solutions</h2>
+      <p class="section-sub">Everything you need to know before your first call.</p>
+    </div>
+    <div class="faq-list reveal" id="productFaqList"></div>
+  </div>
+</section>
+
+<!-- 14 — FINAL CTA -->
+<section class="section section-light">
+  <div class="container">
+    <div class="final-cta reveal">
+      <h2>Not Sure Where To Start?</h2>
+      <p>Speak with our wealth team and discover the investment solutions that fit your financial goals.</p>
+      <div class="final-cta-row">
+        <a href="index.html#contact" class="btn btn-primary">Book a Wealth Consultation</a>
+        <a href="#goal-selector" class="btn btn-ghost-light">Explore All Solutions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><span class="logo-mark">TF</span><span class="logo-text">TrueFunnel</span></a>
+      <p>High-conviction portfolios for HNIs. Mutual Funds, PMS, and AIF — curated, not collected. Few clients, full attention.</p>
+      <p class="muted-sm">AMFI Reg. No: ARN-360113 | APMI Reg. No: APRN09086</p>
+    </div>
+    <div class="footer-col">
+      <h4>Solutions</h4>
+      <a href="#product-pms">Portfolio Management</a>
+      <a href="#product-mutual-funds">Mutual Funds</a>
+      <a href="#product-aif">AIF &amp; Alternatives</a>
+      <a href="#product-portfolio-overhaul">Portfolio Overhaul</a>
+      <a href="index.html#tools">Goal Planning Tools</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#founder">Founder</a>
+      <a href="#product-faq">FAQs</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="index.html#insights">Insights</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:invest@truefunnel.in">invest@truefunnel.in</a>
+      <a href="tel:+919909999684">+91 99099 99684</a>
+      <p class="muted-sm">True Funnel Financial Services<br>308 Shree Balaji Heights, Nr. Lal Bungalow, Off C G Road, Ellisbridge, Ahmedabad, Gujarat 380006<br>Ahmedabad, Gujarat</p>
+    </div>
+  </div>
+  <div class="container">
+    <p class="footer-copy">© True Funnel. All rights reserved.</p>
+    <p class="footer-disclaimer">Disclaimer: Mutual fund investments are subject to market risks. Please read the scheme information document carefully before investing. Past performance is not indicative of future returns. True Funnel is a mutual fund distributor registered with AMFI (ARN-360113) and APMI (APRN09086). PMS and AIF investments carry higher risk and are suitable only for informed investors with a higher risk appetite. The information on this website, including all calculators and illustrative figures, is for general informational purposes only and should not be construed as investment advice or a performance projection. Please consult a qualified professional before making any investment decisions.</p>
+  </div>
+</footer>
+
+<!-- STICKY BOTTOM BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <span>Not sure which solution fits you?</span>
+  <div class="sticky-bar-cta">
+    <a href="index.html#contact" class="btn btn-primary btn-sm">Book a Consultation →</a>
+    <a href="index.html#risk-profile" class="btn btn-ghost-light btn-sm">Take Risk Profile</a>
+  </div>
+  <button type="button" class="sticky-bar-close" id="stickyBarClose" aria-label="Close">×</button>
+</div>
+
+<!-- EXIT INTENT MODAL -->
+<div class="modal-overlay" id="exitModal" hidden>
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="exitModalClose" aria-label="Close">×</button>
+    <div class="modal-icon">🎯</div>
+    <h3>Before You Go —<br>Free 15-Min Portfolio Review</h3>
+    <p>Our wealth strategist will review your current investments and identify 2–3 quick wins to improve returns. No obligations.</p>
+    <a href="index.html#contact" class="btn btn-primary btn-block" id="exitModalCta">Get My Review</a>
+    <p class="muted-sm center">🔒 100% confidential · No spam · We'll call within 2 hours</p>
+  </div>
+</div>
+
+<script src="assets/common.js"></script>
+<script src="assets/products-data.js"></script>
+<script src="assets/products.js"></script>
+</body>
+</html>
