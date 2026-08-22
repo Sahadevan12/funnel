@@ -317,16 +317,19 @@
     section.id = 'product-' + product.id;
     section.dataset.productId = product.id;
     var iconClass = { pms:'icon-pms', 'mutual-funds':'icon-mf', aif:'icon-aif', 'portfolio-overhaul':'icon-overhaul' }[product.id] || 'icon-pms';
-    var glyphInner = product.id === 'mutual-funds' ? '<span></span>' :
-      product.id === 'aif' ? '<span></span>' :
-      product.id === 'portfolio-overhaul' ? '<span></span><span></span><span></span><span></span>' :
-      '<span></span><span></span><span></span>';
+    var ICONS = {
+      pms: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M3 13h18"></path><path d="M10 13v1.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V13"></path></svg>',
+      'mutual-funds': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v9l8 3"></path><path d="M12 12L6 18"></path></svg>',
+      aif: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path><circle cx="12" cy="12" r="3"></circle></svg>',
+      'portfolio-overhaul': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"></path><path d="M3 21v-5h5"></path></svg>'
+    };
+    var glyphInner = ICONS[product.id] || ICONS.pms;
 
     section.innerHTML =
       '<div class="product-block">' +
         '<span class="goal-match-badge" hidden>★ Matches Your Goal</span>' +
         '<div class="product-block-head">' +
-          '<div class="solution-icon-3d ' + iconClass + '"><div class="glyph">' + glyphInner + '</div></div>' +
+          '<div class="solution-icon-3d ' + iconClass + '">' + glyphInner + '</div>' +
           '<div><h2>' + product.name + '</h2><p class="product-block-tagline">' + product.tagline + '</p>' +
           (product.minInvestment ? '<span class="product-block-min">Minimum ' + product.minInvestment + '</span>' : '') +
           '</div>' +
