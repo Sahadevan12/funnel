@@ -248,7 +248,7 @@ input[type="range"]{width:100%;accent-color:var(--teal);height:5px;}
 .faq-q span{color:var(--teal);font-size:20px;transition:transform .2s;}
 .faq-item.open .faq-q span{transform:rotate(45deg);}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
-.faq-item.open .faq-a{max-height:200px;}
+.faq-item.open .faq-a{max-height:400px;}
 .faq-a p{padding:0 4px 22px;font-size:14.5px;}
 
 /* ---------- Contact ---------- */
@@ -325,6 +325,9 @@ input[type="range"]{width:100%;accent-color:var(--teal);height:5px;}
   .nav-cta{display:none;}
   .founder-photo{width:140px;height:140px;margin:0 auto;font-size:44px;}
   .footer-grid{grid-template-columns:1fr;}
-  .sticky-bar{flex-wrap:wrap;}
+  .sticky-bar{flex-wrap:wrap;padding:12px 16px;}
+  .sticky-bar span{flex:1 1 100%;}
+  .sticky-bar-cta{flex:1 1 100%;flex-wrap:wrap;}
+  .sticky-bar-cta .btn{flex:1 1 auto;text-align:center;}
   .asset-grid{grid-template-columns:repeat(2,1fr);}
 }

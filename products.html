@@ -41,12 +41,13 @@
 <section class="p-hero">
   <div class="container p-hero-grid">
     <div class="reveal">
-      <div class="p-hero-eyebrow">✦ Investment Solutions</div>
+      <div class="p-hero-eyebrow">✦ For HNI &amp; Affluent Investors</div>
       <h1>Build. Grow. Protect. Optimise.</h1>
       <p class="p-hero-sub">Investment solutions designed around your goals, risk profile and long-term wealth journey.</p>
+      <p class="p-hero-note">Portfolio Management Services, Mutual Funds, AIF &amp; Portfolio Overhaul — under one wealth strategist, not a call centre.</p>
       <div class="p-hero-cta-row">
         <a href="index.html#contact" class="btn btn-primary">Book a Wealth Consultation</a>
-        <a href="#goal-selector" class="btn btn-ghost-dark">Explore Solutions</a>
+        <button type="button" class="btn btn-ghost-dark" data-open-review-modal>Get a 15-Min Portfolio Review</button>
       </div>
     </div>
     <div class="p-dashboard reveal">
@@ -96,6 +97,7 @@
           <span class="featured-badge">★ Flagship Solution</span>
           <h2>Portfolio Management Services</h2>
           <p>A professionally managed portfolio built around your goals, risk profile and wealth objectives.</p>
+          <p class="featured-who-for">Who it's for: <span id="featuredWhoFor"></span></p>
           <ul class="featured-list" id="featuredBenefits"></ul>
           <a href="#product-pms" class="btn btn-primary">Explore PMS</a>
         </div>
@@ -134,6 +136,7 @@
       <h2>Not Sure Which Solution Is Right For You?</h2>
       <p class="section-sub">A side-by-side view across our four solutions.</p>
     </div>
+    <p class="comparison-scroll-hint">Swipe to compare →</p>
     <div class="comparison-scroll reveal" id="comparisonTableHost"></div>
   </div>
 </section>
@@ -147,6 +150,7 @@
       <p class="section-sub">Four steps, from first conversation to an actively managed portfolio.</p>
     </div>
     <div class="timeline reveal" id="processTimeline"></div>
+    <p class="process-reassurance">No pressure, no obligation — the first conversation is free.</p>
   </div>
 </section>
 
@@ -191,6 +195,7 @@
           <a href="index.html#contact" class="btn btn-primary">Explore NRI Solutions</a>
         </div>
         <div class="nri-routes">
+          <div class="nri-routes-label">🌍 Wherever You Are</div>
           <div class="nri-route"><span>USA</span><span class="nri-arrow">→</span><span>India</span></div>
           <div class="nri-route"><span>UAE</span><span class="nri-arrow">→</span><span>India</span></div>
           <div class="nri-route"><span>UK</span><span class="nri-arrow">→</span><span>India</span></div>
@@ -201,15 +206,15 @@
   </div>
 </section>
 
-<!-- 12 — TESTIMONIALS -->
+<!-- 12 — WHAT TO EXPECT (no fabricated testimonials) -->
 <section class="section section-light">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Client Voices</span>
-      <h2>Trusted By Investors Like You</h2>
-      <p class="section-sub">Sample placeholders shown below — to be replaced with real client testimonials.</p>
+      <span class="eyebrow">The True Funnel Standard</span>
+      <h2>What You Can Expect</h2>
+      <p class="section-sub">Not marketing claims — the working standard every client relationship runs on.</p>
     </div>
-    <div class="testimonial-grid reveal" id="testimonialGrid"></div>
+    <div class="standards-grid reveal" id="standardsGrid"></div>
   </div>
 </section>
 
@@ -230,10 +235,14 @@
   <div class="container">
     <div class="final-cta reveal">
       <h2>Not Sure Where To Start?</h2>
-      <p>Speak with our wealth team and discover the investment solutions that fit your financial goals.</p>
+      <p>Speak with our wealth team and discover the investment solutions that fit your financial goals. No obligation — our team responds within 2 hours.</p>
       <div class="final-cta-row">
         <a href="index.html#contact" class="btn btn-primary">Book a Wealth Consultation</a>
-        <a href="#goal-selector" class="btn btn-ghost-light">Explore All Solutions</a>
+        <button type="button" class="btn btn-ghost-light" data-open-review-modal>Get a 15-Min Portfolio Review</button>
+      </div>
+      <div class="final-cta-direct">
+        <a href="tel:+919909999684">📞 +91 99099 99684</a>
+        <a href="mailto:invest@truefunnel.in">✉ invest@truefunnel.in</a>
       </div>
     </div>
   </div>
@@ -280,20 +289,20 @@
 <div class="sticky-bar" id="stickyBar">
   <span>Not sure which solution fits you?</span>
   <div class="sticky-bar-cta">
-    <a href="index.html#contact" class="btn btn-primary btn-sm">Book a Consultation →</a>
-    <a href="index.html#risk-profile" class="btn btn-ghost-light btn-sm">Take Risk Profile</a>
+    <a href="index.html#contact" class="btn btn-primary btn-sm">Book a Wealth Consultation</a>
+    <button type="button" class="btn btn-ghost-light btn-sm" data-open-review-modal>Get a 15-Min Portfolio Review</button>
   </div>
   <button type="button" class="sticky-bar-close" id="stickyBarClose" aria-label="Close">×</button>
 </div>
 
-<!-- EXIT INTENT MODAL -->
+<!-- PORTFOLIO REVIEW MODAL (exit-intent + explicit secondary-CTA trigger) -->
 <div class="modal-overlay" id="exitModal" hidden>
   <div class="modal-card">
     <button type="button" class="modal-close" id="exitModalClose" aria-label="Close">×</button>
     <div class="modal-icon">🎯</div>
-    <h3>Before You Go —<br>Free 15-Min Portfolio Review</h3>
-    <p>Our wealth strategist will review your current investments and identify 2–3 quick wins to improve returns. No obligations.</p>
-    <a href="index.html#contact" class="btn btn-primary btn-block" id="exitModalCta">Get My Review</a>
+    <h3>Free 15-Min<br>Portfolio Review</h3>
+    <p>Our wealth strategist will review your current investments and flag where your portfolio structure, diversification or goal-alignment could be improved. No obligations.</p>
+    <a href="index.html#contact" class="btn btn-primary btn-block" id="exitModalCta">Get a 15-Min Portfolio Review</a>
     <p class="muted-sm center">🔒 100% confidential · No spam · We'll call within 2 hours</p>
   </div>
 </div>

@@ -7,14 +7,16 @@
   function renderTrustBar(){
     var host = document.getElementById('trustBarGrid');
     if(!host) return;
-    host.innerHTML = TF_STATS.map(function(s, i){
-      return '<div class="trust-stat' + (s.placeholder ? ' placeholder' : '') + '" data-numeric="' + (s.numeric != null ? s.numeric : '') + '" data-suffix="' + (s.suffix || '') + '">' +
-        '<strong>' + (s.placeholder ? s.value : '0' + (s.suffix || '')) + '</strong><span>' + s.label + '</span></div>';
+    host.innerHTML = TF_STATS.map(function(s){
+      var isNumeric = s.numeric != null;
+      return '<div class="trust-stat' + (s.isText ? ' trust-stat-text' : '') + '"' +
+        (isNumeric ? ' data-numeric="' + s.numeric + '" data-suffix="' + (s.suffix || '') + '"' : '') + '>' +
+        '<strong>' + (isNumeric ? '0' + (s.suffix || '') : s.value) + '</strong><span>' + s.label + '</span></div>';
     }).join('');
   }
 
   function countUpStats(){
-    var stats = document.querySelectorAll('.trust-stat:not(.placeholder)');
+    var stats = document.querySelectorAll('.trust-stat[data-numeric]');
     if(!stats.length) return;
     var done = false;
     function run(){
@@ -48,8 +50,13 @@
     var host = document.getElementById('goalGrid');
     if(!host) return;
     host.innerHTML = TF_GOALS.map(function(g){
+      var recommended = g.productIds.map(function(id){
+        var p = TF_PRODUCTS.find(function(pr){ return pr.id === id; });
+        return '<span>' + p.shortName + '</span>';
+      }).join('');
       return '<button type="button" class="goal-card" data-goal="' + g.id + '">' +
-        '<div class="goal-icon">' + g.icon + '</div><h3>' + g.title + '</h3><p>' + g.desc + '</p></button>';
+        '<div class="goal-icon">' + g.icon + '</div><h3>' + g.title + '</h3><p>' + g.desc + '</p>' +
+        '<div class="goal-tags">' + recommended + '</div></button>';
     }).join('');
     host.addEventListener('click', function(e){
       var card = e.target.closest('.goal-card');
@@ -67,6 +74,8 @@
       var match = productIds.indexOf(b.dataset.productId) > -1;
       b.classList.toggle('goal-match', match);
       b.classList.toggle('goal-dim', !match);
+      var badge = b.querySelector('.goal-match-badge');
+      if(badge){ badge.hidden = !match; }
     });
     var target = document.getElementById('allProductsGrid');
     if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
@@ -310,6 +319,7 @@
 
     section.innerHTML =
       '<div class="product-block">' +
+        '<span class="goal-match-badge" hidden>★ Matches Your Goal</span>' +
         '<div class="product-block-head">' +
           '<div class="product-block-icon">' + product.icon + '</div>' +
           '<div><h2>' + product.name + '</h2><p class="product-block-tagline">' + product.tagline + '</p>' +
@@ -334,13 +344,13 @@
             }).join('') + '</div>' +
             '<div class="product-subhead">Eligibility</div>' +
             '<div class="eligibility-box">' + product.eligibility + '</div>' +
-            '<div class="calc-slot"></div>' +
+            '<div class="calc-panel"><div class="calc-panel-label">📊 Run The Numbers</div><div class="calc-slot"></div></div>' +
           '</div>' +
         '</div>' +
         '<div class="product-block-cta">' +
-          '<a href="#enquiry-' + product.id + '" class="btn btn-primary">' + product.ctaLabel + '</a>' +
+          '<button type="button" class="btn btn-primary" data-enquiry-toggle>' + product.ctaLabel + '</button>' +
         '</div>' +
-        '<div class="mini-enquiry" id="enquiry-' + product.id + '"></div>' +
+        '<div class="mini-enquiry" id="enquiry-' + product.id + '" hidden></div>' +
       '</div>';
 
     var calcSlot = section.querySelector('.calc-slot');
@@ -351,10 +361,15 @@
     }
     renderMiniEnquiry(section.querySelector('.mini-enquiry'), product);
 
-    var cta = section.querySelector('.product-block-cta a');
-    cta.addEventListener('click', function(e){
-      e.preventDefault();
-      section.querySelector('.mini-enquiry').scrollIntoView({behavior:'smooth', block:'center'});
+    var cta = section.querySelector('[data-enquiry-toggle]');
+    var enquiry = section.querySelector('.mini-enquiry');
+    cta.addEventListener('click', function(){
+      enquiry.hidden = false;
+      requestAnimationFrame(function(){
+        enquiry.scrollIntoView({behavior:'smooth', block:'center'});
+        var firstField = enquiry.querySelector('input');
+        if(firstField){ firstField.focus({preventScroll:true}); }
+      });
     });
 
     return section;
@@ -374,6 +389,8 @@
     if(!host) return;
     var pms = TF_PRODUCTS.find(function(p){ return p.id === 'pms'; });
     host.innerHTML = pms.whyChoose.map(function(b){ return '<li>' + b + '</li>'; }).join('');
+    var whoFor = document.getElementById('featuredWhoFor');
+    if(whoFor){ whoFor.textContent = pms.whoFor; }
   }
 
   /* ---------------- Comparison table ---------------- */
@@ -389,9 +406,9 @@
       {key:'portfolioReview', label:'Portfolio Review'}
     ];
     var html = '<table class="comparison-table"><thead><tr><th></th>' +
-      TF_PRODUCTS.map(function(p){ return '<th>' + p.icon + ' ' + p.shortName + '</th>'; }).join('') + '</tr></thead><tbody>';
+      TF_PRODUCTS.map(function(p, i){ return '<th' + (i===0 ? ' class="comparison-featured-col"' : '') + '>' + p.icon + ' ' + p.shortName + '</th>'; }).join('') + '</tr></thead><tbody>';
     rows.forEach(function(r){
-      html += '<tr><td>' + r.label + '</td>' + TF_PRODUCTS.map(function(p){ return '<td>' + p.comparison[r.key] + '</td>'; }).join('') + '</tr>';
+      html += '<tr><td>' + r.label + '</td>' + TF_PRODUCTS.map(function(p, i){ return '<td' + (i===0 ? ' class="comparison-featured-col"' : '') + '>' + p.comparison[r.key] + '</td>'; }).join('') + '</tr>';
     });
     html += '</tbody></table>';
     host.innerHTML = html;
@@ -416,19 +433,17 @@
     var host = document.getElementById('feeGrid');
     if(!host) return;
     host.innerHTML = TF_FEE_VALUE.map(function(f){
-      return '<div class="fee-card"><strong>' + f.title + '</strong><span>' + f.desc + '</span></div>';
+      return '<div class="fee-card"><div class="fee-card-icon">' + f.icon + '</div><strong>' + f.title + '</strong><span>' + f.desc + '</span></div>';
     }).join('');
   }
 
-  /* ---------------- Testimonials ---------------- */
-  function renderTestimonials(){
-    var host = document.getElementById('testimonialGrid');
+  /* ---------------- Standards (what to expect — no fabricated testimonials) ---------------- */
+  function renderStandards(){
+    var host = document.getElementById('standardsGrid');
     if(!host) return;
-    host.innerHTML = TF_TESTIMONIALS.map(function(t){
-      return '<div class="testimonial-card">' +
-        (t.placeholder ? '<span class="testimonial-placeholder-tag">Sample content</span>' : '') +
-        '<p class="testimonial-quote">"' + t.quote + '"</p>' +
-        '<div class="testimonial-name">' + t.name + '</div><div class="testimonial-role">' + t.role + '</div></div>';
+    host.innerHTML = TF_STANDARDS.map(function(s){
+      return '<div class="standard-card"><div class="standard-icon">' + s.icon + '</div>' +
+        '<div class="standard-title">' + s.title + '</div><p class="standard-desc">' + s.desc + '</p></div>';
     }).join('');
   }
 
@@ -463,8 +478,8 @@
   function renderFAQ(){
     var host = document.getElementById('productFaqList');
     if(!host) return;
-    host.innerHTML = TF_PRODUCT_FAQ.map(function(item){
-      return '<div class="faq-item"><button type="button" class="faq-q">' + item.q + ' <span>+</span></button>' +
+    host.innerHTML = TF_PRODUCT_FAQ.map(function(item, i){
+      return '<div class="faq-item' + (i===0 ? ' open' : '') + '"><button type="button" class="faq-q">' + item.q + ' <span>+</span></button>' +
         '<div class="faq-a"><p>' + item.a + '</p></div></div>';
     }).join('');
 
@@ -510,7 +525,7 @@
   renderTimeline();
   renderFlow();
   renderFeeGrid();
-  renderTestimonials();
+  renderStandards();
   renderFAQ();
   countUpStats();
   initReveal();

@@ -87,17 +87,20 @@ window.TF = (function(){
     if(!modal) return;
     var closeBtn = document.getElementById('exitModalClose');
     var cta = document.getElementById('exitModalCta');
-    var shown = false;
+    var shownOnExitIntent = false;
 
-    function open(){
-      if(shown) return;
-      shown = true;
-      modal.hidden = false;
-    }
+    function open(){ modal.hidden = false; }
     function close(){ modal.hidden = true; }
 
     document.addEventListener('mouseout', function(e){
-      if(!e.relatedTarget && e.clientY < 10){ open(); }
+      if(!shownOnExitIntent && !e.relatedTarget && e.clientY < 10){
+        shownOnExitIntent = true;
+        open();
+      }
+    });
+    // Any element on the page can open this modal directly via data-open-review-modal
+    document.addEventListener('click', function(e){
+      if(e.target.closest('[data-open-review-modal]')){ open(); }
     });
     if(closeBtn){ closeBtn.addEventListener('click', close); }
     modal.addEventListener('click', function(e){ if(e.target === modal) close(); });

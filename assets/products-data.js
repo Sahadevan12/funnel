@@ -201,10 +201,10 @@ window.TF_GOALS = [
 ];
 
 window.TF_STATS = [
-  { value: '₹XX Cr+', label: 'Assets Guided', numeric: null, placeholder: true },
-  { value: '100+', label: 'Families Served', numeric: 100, suffix: '+', placeholder: false },
   { value: '16+', label: 'Years of Experience', numeric: 16, suffix: '+', placeholder: false },
-  { value: '4', label: 'Investment Solutions', numeric: 4, suffix: '', placeholder: false }
+  { value: '100+', label: 'Ultra HNIs Served', numeric: 100, suffix: '+', placeholder: false },
+  { value: '4', label: 'Investment Solutions', numeric: 4, suffix: '', placeholder: false },
+  { value: 'SEBI · AMFI · APMI', label: 'Registered & Certified', numeric: null, placeholder: false, isText: true }
 ];
 
 window.TF_PROCESS = [
@@ -222,17 +222,18 @@ window.TF_STRATEGY_FLOW = [
 ];
 
 window.TF_FEE_VALUE = [
-  { title: 'Professional Management', desc: 'Your allocation is actively managed, not left on autopilot.' },
-  { title: 'Research', desc: 'Strategy and fund selection backed by ongoing research.' },
-  { title: 'Portfolio Monitoring', desc: 'Continuous tracking of your holdings against your goals.' },
-  { title: 'Reviews', desc: 'Scheduled reviews to catch drift before it compounds.' },
-  { title: 'Advisory Support', desc: 'Direct access to a wealth strategist, not a call centre.' }
+  { icon: '🧭', title: 'Professional Management', desc: 'Your allocation is actively managed, not left on autopilot.' },
+  { icon: '🔎', title: 'Research', desc: 'Strategy and fund selection backed by ongoing research.' },
+  { icon: '📈', title: 'Portfolio Monitoring', desc: 'Continuous tracking of your holdings against your goals.' },
+  { icon: '🔄', title: 'Reviews', desc: 'Scheduled reviews to catch drift before it compounds.' },
+  { icon: '🤝', title: 'Advisory Support', desc: 'Direct access to a wealth strategist, not a call centre.' }
 ];
 
-window.TF_TESTIMONIALS = [
-  { quote: 'Sample testimonial — replace with a real client quote once available.', name: 'Client Name', role: 'Investor profile', placeholder: true },
-  { quote: 'Sample testimonial — replace with a real client quote once available.', name: 'Client Name', role: 'Investor profile', placeholder: true },
-  { quote: 'Sample testimonial — replace with a real client quote once available.', name: 'Client Name', role: 'Investor profile', placeholder: true }
+window.TF_STANDARDS = [
+  { icon: '🎯', title: 'Selective By Design', desc: 'We work with a limited number of clients so every portfolio gets full attention, not a queue.' },
+  { icon: '🧾', title: 'Full Transparency', desc: 'You always know what you hold, why you hold it, and what it costs — no hidden structures.' },
+  { icon: '📞', title: 'Direct Access', desc: 'You reach your wealth strategist directly, not a rotating call-centre relationship manager.' },
+  { icon: '🔁', title: 'Scheduled Reviews', desc: 'Quarterly reviews are built into the process, not left to happen only when you ask.' }
 ];
 
 window.TF_PRODUCT_FAQ = [
