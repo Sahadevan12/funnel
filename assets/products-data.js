@@ -253,6 +253,6 @@ window.TF_PRODUCT_FAQ = [
   { q: 'How do I choose the right investment solution?', a: 'Start with the goal selector above, or take our free Risk Profile assessment and Portfolio Health Check — both are designed to point you to the right solution before you speak to us.' },
   { q: 'How does the consultation process work?', a: 'You share your goals and current holdings, our wealth strategist reviews them, and you get a tailored recommendation — free, with no obligation to invest.' },
   { q: 'What documents are required?', a: 'Standard SEBI/AMFI-mandated KYC (PAN and address proof) applies across products. Specific onboarding documentation is confirmed during your consultation.' },
-  { q: 'Can NRIs invest?', a: 'Yes, we work with NRI clients across time zones for remote consultations and access to our PMS, Mutual Fund and AIF solutions.' },
+  { q: 'Can NRIs invest?', a: 'NRIs can generally invest in Indian mutual funds, PMS and AIF, subject to FEMA and scheme-specific eligibility norms. Speak with our wealth strategist to confirm what applies to your situation.' },
   { q: 'How can I speak to an advisor?', a: 'Use any "Talk to an Advisor" or "Book a Wealth Consultation" button on this page, or reach us directly — our team responds within 2 hours during business hours.' }
 ];
