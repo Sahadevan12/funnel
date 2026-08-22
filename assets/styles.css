@@ -123,6 +123,17 @@ p{margin:0 0 16px;color:var(--gray-600);}
 .hero-credibility strong{color:var(--white);font-weight:600;}
 .hero-credibility .dot{opacity:.4;}
 
+.hero-feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0 32px;max-width:480px;}
+.hero-feature{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.04);border:1px solid var(--border-light);border-left:3px solid var(--electric);border-radius:var(--radius-sm);padding:13px 14px;}
+.hero-feature:nth-child(2n){border-left-color:var(--gold);}
+.hero-feature-icon{flex:none;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,174,66,0.15);color:var(--electric);}
+.hero-feature:nth-child(2n) .hero-feature-icon{background:rgba(201,168,106,0.18);color:var(--gold);}
+.hero-feature-icon svg{width:17px;height:17px;}
+.hero-feature-label{font-size:13px;font-weight:600;color:rgba(255,255,255,0.92);line-height:1.3;}
+
+.btn-arrow-badge{flex:none;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;line-height:1;background:rgba(255,255,255,0.2);}
+.btn-primary .btn-arrow-badge{background:var(--white);color:var(--electric-dark);}
+
 /* Wealth Architecture — CSS-3D glass/metal hero visual */
 .wealth-arch{position:relative;background:radial-gradient(120% 130% at 30% 10%, var(--panel-dark) 0%, var(--black) 70%);border-radius:var(--radius-lg);padding:40px 28px;box-shadow:var(--shadow-lg);transform-style:preserve-3d;transition:transform .4s ease;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .wealth-arch::before{content:'';position:absolute;inset:0;border-radius:var(--radius-lg);border:1px solid rgba(201,168,106,0.22);pointer-events:none;}
